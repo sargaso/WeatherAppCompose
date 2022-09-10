@@ -36,12 +36,12 @@ import kotlinx.coroutines.launch
 import org.json.JSONObject
 import androidx.lifecycle.viewmodel.compose.*
 
-const val API_KEY = "602e5ab516424c45ab6143539220708"
+
 
 @Preview(showBackground = true)
 @Composable
 fun MainCard(viewModel: MainViewModel = viewModel() ) {
-//
+
     Column(
         modifier = Modifier
             .padding(5.dp)
@@ -117,7 +117,9 @@ fun MainCard(viewModel: MainViewModel = viewModel() ) {
                         color = Color.White
                     )
 
-                    IconButton(onClick = {requestWeatherData(viewModel.liveDataCurrent.value.c)}
+                    IconButton(onClick = {
+                       // requestWeatherData(viewModel.liveDataCurrent.value.c)
+                    }
 
                     ) {
                         Icon(
@@ -196,8 +198,9 @@ fun TabLayout() {
 }
 
 
+/*
 
-private fun requestWeatherData(city: String){
+private fun requestWeatherData(city: String, context: Context){
     val url = "https://api.weatherapi.com/v1/forecast.json?key=" +
             API_KEY +
             "&q=" +
@@ -205,7 +208,7 @@ private fun requestWeatherData(city: String){
             "&days=" +
             "3" +
             "&aqi=no&alerts=no"
-    val queue = Volley.newRequestQueue(this)
+    val queue = Volley.newRequestQueue(context )
     val request = StringRequest(
         GET,
         url,
@@ -219,7 +222,7 @@ private fun requestWeatherData(city: String){
     queue.add(request)
 }
 
-private fun parseCurrentData(mainObject: JSONObject, weatherItem: WeatherModel){
+fun parseCurrentData(mainObject: JSONObject, weatherItem: WeatherModel){
     val item = WeatherModel(
         mainObject.getJSONObject("location").getString("name"),
         mainObject.getJSONObject("current").getString("last_updated"),
@@ -243,7 +246,7 @@ private fun parseWeatherData(result: String) {
     parseCurrentData(mainObject, list[0])
 }
 
-private fun parseDays(mainObject: JSONObject): List<WeatherModel>{
+fun parseDays(mainObject: JSONObject): List<WeatherModel>{
     val list = ArrayList<WeatherModel>()
     val daysArray = mainObject.getJSONObject("forecast")
         .getJSONArray("forecastday")
@@ -266,6 +269,8 @@ private fun parseDays(mainObject: JSONObject): List<WeatherModel>{
     }
     return list
 }
+
+*/
 
 
 private fun updateCurrentCard(){

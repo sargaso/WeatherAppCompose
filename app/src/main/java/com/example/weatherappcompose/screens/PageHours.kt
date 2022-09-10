@@ -16,7 +16,7 @@ import coil.compose.AsyncImage
 import com.example.weatherappcompose.data.WeatherModel
 import com.example.weatherappcompose.ui.theme.BlueLight
 
-@Preview
+
 @Composable
 fun ListItem(item:WeatherModel) {
     Card(
